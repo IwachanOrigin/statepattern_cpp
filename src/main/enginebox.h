@@ -1,4 +1,9 @@
 
+#ifndef ENGINE_BOX_H_
+#define ENGINE_BOX_H_
+
+#include "enginestate.h"
+
 namespace design_pattern
 {
 
@@ -10,10 +15,13 @@ public:
 
   void up();
   void down();
+  void changeState(EngineState* newState);
+  void nowState();
 
 private:
-  void nowState();
   int m_state;
 };
 
 } // design_pattern
+
+#endif // ENGINE_BOX_H_
