@@ -1,5 +1,7 @@
 
 #include "engineidle.h"
+#include "enginebox.h"
+#include "enginerunninglow.h"
 #include <iostream>
 
 using namespace design_pattern;
@@ -7,7 +9,7 @@ using namespace design_pattern;
 void EngineIdle::up(EngineBox* pEBox)
 {
   std::cout << "Idle -> low" << std::endl;
-  pEBox->changeState(new EngineRunnningLow());
+  pEBox->changeState(new EngineRunningLow());
 }
 
 void EngineIdle::down(EngineBox* pEBox)

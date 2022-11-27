@@ -1,53 +1,43 @@
 
 #include "enginebox.h"
+#include "engineidle.h"
 #include <iostream>
 
 using namespace design_pattern;
 
 EngineBox::EngineBox()
-  : m_state(0)
 {
+  m_state = new EngineIdle();
+}
+
+EngineBox::~EngineBox()
+{
+  if (m_state)
+  {
+    delete m_state;
+  }
 }
 
 void EngineBox::up()
 {
-  if (m_state == 0)
-  {
-    m_state = 1;
-  }
-  else if (m_state == 1)
-  {
-    m_state = 2;
-  }
-  this->nowState();
+  m_state->up(this);
 }
 
 void EngineBox::down()
 {
-  if (m_state == 2)
-  {
-    m_state = 1;
-  }
-  else if (m_state == 1)
-  {
-    m_state = 0;
-  }
-  this->nowState();
+  m_state->down(this);
 }
 
 void EngineBox::nowState()
 {
-  if (m_state == 0)
-  {
-    std::cout << "State:Idle" << std::endl;
-  }
-  else if (m_state == 1)
-  {
-    std::cout << "State:Low" << std::endl;
-  }
-  else if (m_state == 2)
-  {
-    std::cout << "State:High" << std::endl;
-  }
+  m_state->showCurrentState();
 }
 
+void EngineBox::changeState(EngineState* newState)
+{
+  if (m_state)
+  {
+    delete m_state;
+  }
+  m_state = newState;
+}

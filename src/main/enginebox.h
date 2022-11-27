@@ -19,7 +19,7 @@ public:
   void nowState();
 
 private:
-  int m_state;
+  EngineState* m_state;
 };
 
 } // design_pattern
